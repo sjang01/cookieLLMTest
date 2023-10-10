@@ -9,7 +9,7 @@ def requirements():
 
 setuptools.setup(
     name="cookieLLMTest",
-    version="1.0.5",
+    version="1.0.7",
     license='MIT',
     author="sjang01",
     author_email="sjang01@naver.com",

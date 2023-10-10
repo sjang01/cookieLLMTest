@@ -29,29 +29,29 @@ class ClassificationFeatures:
     label: Optional[int] = None
 
 
-class NsmcCorpus:
+# class NsmcCorpus:
 
-    def __init__(self):
-        pass
+#     def __init__(self):
+#         pass
 
-    def get_examples(self, data_root_path, mode):
-        data_fpath = os.path.join(data_root_path, f"ratings_{mode}.txt")
-        logger.info(f"loading {mode} data... LOOKING AT {data_fpath}")
-        lines = list(csv.reader(open(data_fpath, "r", encoding="utf-8"), delimiter="\t", quotechar='"'))
-        examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
-            _, text_a, label = line
-            examples.append(ClassificationExample(text_a=text_a, text_b=None, label=label))
-        return examples
+#     def get_examples(self, data_root_path, mode):
+#         data_fpath = os.path.join(data_root_path, f"ratings_{mode}.txt")
+#         logger.info(f"loading {mode} data... LOOKING AT {data_fpath}")
+#         lines = list(csv.reader(open(data_fpath, "r", encoding="utf-8"), delimiter="\t", quotechar='"'))
+#         examples = []
+#         for (i, line) in enumerate(lines):
+#             if i == 0:
+#                 continue
+#             _, text_a, label = line
+#             examples.append(ClassificationExample(text_a=text_a, text_b=None, label=label))
+#         return examples
 
-    def get_labels(self):
-        return ["0", "1"]
+#     def get_labels(self):
+#         return ["0", "1"]
 
-    @property
-    def num_labels(self):
-        return len(self.get_labels())
+#     @property
+#     def num_labels(self):
+#         return len(self.get_labels())
 
 class NewsCorpus:
 
@@ -86,6 +86,9 @@ def _convert_examples_to_classification_features(
         label_list: List[str],
 ):
     label_map = {label: i for i, label in enumerate(label_list)}
+
+    logger.info("label_list : %s" % (label_list))
+    logger.info("label_map : %s" % (label_map))
 
     # 예외 처리 추가
     def get_label(example_label):
