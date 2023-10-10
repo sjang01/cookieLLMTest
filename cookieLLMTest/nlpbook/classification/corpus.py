@@ -61,7 +61,7 @@ class NewsCorpus:
     def get_examples(self, data_root_path, mode):
         print(data_root_path)
         print(mode)
-        data_fpath = os.path.join(data_root_path, f"{mode}.txt")
+        data_fpath = os.path.join(data_root_path, f"{mode}.csv")
         lines = open(data_fpath, "r", encoding="utf-8").readlines()
         examples = []
         for (i, line) in enumerate(lines):
