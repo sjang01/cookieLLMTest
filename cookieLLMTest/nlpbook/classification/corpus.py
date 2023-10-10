@@ -73,7 +73,7 @@ class NewsCorpus:
         return examples
 
     def get_labels(self):
-        return ["국제", "경제", "정치", "사회", "문화"]
+        return ["국제", "경제", "정치", "사회", "문화", "스포츠", "IT/과학"]
 
     @property
     def num_labels(self):
