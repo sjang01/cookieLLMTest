@@ -61,7 +61,16 @@ def _convert_examples_to_classification_features(
         label_list: List[str],
 ):
     label_map = {label: i for i, label in enumerate(label_list)}
-    labels = [label_map[example.label] for example in examples]
+
+    # 예외 처리 추가
+    def get_label(example_label):
+        if example_label not in label_map:
+            logger.warning(f"Label '{example_label}' not found in label_map. Defaulting to 0.")
+            return 0  # or return any default value you deem appropriate
+        return label_map[example_label]
+
+    labels = [get_label(example.label) for example in examples]
+    # labels = [label_map[example.label] for example in examples]
 
     logger.info(
         "tokenize sentences, it could take a lot of time..."
