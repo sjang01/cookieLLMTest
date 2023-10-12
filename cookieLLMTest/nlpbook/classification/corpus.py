@@ -73,7 +73,8 @@ class NewsCorpus:
         return examples
 
     def get_labels(self):
-        return ["국제", "경제", "정치", "사회", "문화", "스포츠", "IT/과학"]
+        return ["0", "1", "2", "3", "4", "5", "6"]
+        # return ["국제", "경제", "정치", "사회", "문화", "스포츠", "IT/과학"]
 
     @property
     def num_labels(self):
@@ -87,14 +88,11 @@ def _convert_examples_to_classification_features(
 ):
     label_map = {label: i for i, label in enumerate(label_list)}
 
-    logger.info("label_list : %s" % (label_list))
-    logger.info("label_map : %s" % (label_map))
-
     # 예외 처리 추가
     def get_label(example_label):
         if example_label not in label_map:
-            logger.warning(f"Label '{example_label}' not found in label_map. Defaulting to 0.")
-            return 0  # or return any default value you deem appropriate
+            logger.warning(f"Label '{example_label}' not found in {label_map}. Defaulting to 6.")
+            return 6  # or return any default value you deem appropriate
         return label_map[example_label]
 
     labels = [get_label(example.label) for example in examples]
